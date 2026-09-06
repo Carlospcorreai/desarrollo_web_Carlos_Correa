@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Registro de voluntario</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html">Registro de voluntario</a>
+      <a href="avistamiento.html">Informar avistamiento</a>
+      <a href="listado.html">Listado</a>
+      <a href="estadisticas.html">Estadísticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Registro de voluntario</h2>
+    <p>Los campos marcados con * son obligatorios.</p>
+
+    <section id="mensaje" hidden>
+      <h3 id="mensaje-titulo"></h3>
+      <ul id="mensaje-lista"></ul>
+    </section>
+
+    <form name="formRegistro">
+      <p>
+        <label for="nombre">Nombre completo *</label>
+        <input type="text" id="nombre" name="nombre">
+        <small>Mínimo 3 caracteres, solo letras y espacios.</small>
+      </p>
+
+      <p>
+        <label for="email">Email *</label>
+        <input type="text" id="email" name="email">
+        <small>Formato nombre@dominio.cl</small>
+      </p>
+
+      <p>
+        <label for="celular">Celular *</label>
+        <input type="text" id="celular" name="celular">
+        <small>9 dígitos, comenzando con 9. Ejemplo: 912345678</small>
+      </p>
+
+      <p>
+        <label for="región">Región *</label>
+        <select id="región" name="región">
+          <option value="">Seleccione una región</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="comuna">Comuna *</label>
+        <select id="comuna" name="comuna">
+          <option value="">Seleccione una comuna</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="observaciones">Observaciones (opcional)</label>
+        <textarea id="observaciones" name="observaciones" rows="3" cols="40"></textarea>
+      </p>
+
+      <p>
+        <button type="button" id="boton-registrar">Registrarme</button>
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

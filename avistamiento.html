@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Informar avistamiento</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html">Registro de voluntario</a>
+      <a href="avistamiento.html">Informar avistamiento</a>
+      <a href="listado.html">Listado</a>
+      <a href="estadisticas.html">Estadísticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Informar un avistamiento</h2>
+    <p>Los campos marcados con * son obligatorios.</p>
+
+    <section id="mensaje" hidden>
+      <h3 id="mensaje-titulo"></h3>
+      <ul id="mensaje-lista"></ul>
+    </section>
+
+    <form name="formAvistamiento">
+      <p>
+        <label for="tipo">Tipo de ave *</label>
+        <select id="tipo" name="tipo">
+          <option value="">Seleccione un tipo</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="nombre">Nombre del ave *</label>
+        <input type="text" id="nombre" name="nombre">
+        <small>Mínimo 3 caracteres.</small>
+      </p>
+
+      <p>
+        <label for="lugar">Lugar del avistamiento *</label>
+        <input type="text" id="lugar" name="lugar">
+        <small>Mínimo 3 caracteres.</small>
+      </p>
+
+      <p>
+        <label for="fecha">Fecha *</label>
+        <input type="date" id="fecha" name="fecha">
+        <small>No puede ser futura ni anterior a un año.</small>
+      </p>
+
+      <p>
+        <label for="hora">Hora *</label>
+        <input type="time" id="hora" name="hora">
+      </p>
+
+      <p>
+        <label for="archivos">Foto o video *</label>
+        <input type="file" id="archivos" name="archivos" multiple accept="image/*,video/*">
+        <small>Entre 1 y 3 archivos de imagen o video.</small>
+      </p>
+
+      <p>
+        <label for="comentario">Comentario (opcional)</label>
+        <textarea id="comentario" name="comentario" rows="3" cols="40"></textarea>
+      </p>
+
+      <p>
+        <button type="button" id="boton-informar">Informar avistamiento</button>
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/avistamiento.js"></script>
+</body>
+</html>

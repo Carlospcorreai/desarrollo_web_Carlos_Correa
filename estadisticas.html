@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Estadísticas</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html">Registro de voluntario</a>
+      <a href="avistamiento.html">Informar avistamiento</a>
+      <a href="listado.html">Listado</a>
+      <a href="estadisticas.html">Estadísticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Indicadores del sistema</h2>
+    <ul>
+      <li>Total de avistamientos: <strong id="total-avistamientos"></strong></li>
+      <li>Total de voluntarios: <strong id="total-voluntarios"></strong></li>
+      <li>Tipo de ave más informado: <strong id="tipo-frecuente"></strong></li>
+    </ul>
+
+    <h2>Avistamientos por tipo de ave</h2>
+    <ul class="grafico" id="grafico-aves">
+    </ul>
+
+    <h2>Voluntarios por región</h2>
+    <ul class="grafico" id="grafico-voluntarios">
+    </ul>
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/estadisticas.js"></script>
+</body>
+</html>

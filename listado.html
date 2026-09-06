@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Listado de avistamientos</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="registro.html">Registro de voluntario</a>
+      <a href="avistamiento.html">Informar avistamiento</a>
+      <a href="listado.html">Listado</a>
+      <a href="estadisticas.html">Estadísticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Listado de avistamientos</h2>
+
+    <form name="formListado">
+      <p>
+        <label for="filtro-tipo">Filtrar por tipo de ave</label>
+        <select id="filtro-tipo" name="filtro-tipo">
+          <option value="">Todos</option>
+        </select>
+
+        <label for="orden">Ordenar por</label>
+        <select id="orden" name="orden">
+          <option value="fecha">Fecha (más reciente primero)</option>
+          <option value="lugar">Lugar (A-Z)</option>
+          <option value="nombre">Nombre del ave (A-Z)</option>
+        </select>
+      </p>
+    </form>
+
+    <table>
+      <caption id="resumen">Avistamientos</caption>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Nombre del ave</th>
+          <th>Lugar</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo-tabla">
+      </tbody>
+    </table>
+
+    <p>
+      <button type="button" id="boton-anterior">Anterior</button>
+      <span id="indicador-página"></span>
+      <button type="button" id="boton-siguiente">Siguiente</button>
+    </p>
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/listado.js"></script>
+</body>
+</html>
