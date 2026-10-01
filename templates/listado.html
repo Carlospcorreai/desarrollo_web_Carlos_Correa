@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de avistamientos{% endblock %}
+
+{% block content %}
+  <h2>Listado de avistamientos</h2>
+
+  {% if avistamientos %}
+    <table>
+      <caption>Avistamientos registrados: {{ total }}. Haz clic en una fila para ver el detalle.</caption>
+      <thead>
+        <tr>
+          <th>Ave</th>
+          <th>Lugar</th>
+          <th>Fecha y hora</th>
+          <th>Voluntario</th>
+          <th>Archivos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for av in avistamientos %}
+          {# data-url lo usa listado.js para que toda la fila sea clickeable #}
+          <tr class="fila" data-url="{{ url_for('detalle', id=av.id) }}">
+            <td><a href="{{ url_for('detalle', id=av.id) }}">{{ av.ave }}</a></td>
+            <td>{{ av.lugar }}</td>
+            <td><time datetime="{{ av.fecha_hora.isoformat() }}">{{ av.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</time></td>
+            <td>{{ av.voluntario }}</td>
+            <td>{{ av.registros | length }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p class="paginacion">
+      {% if pagina > 1 %}
+        <a href="{{ url_for('listado', pagina=pagina - 1) }}">Anterior</a>
+      {% endif %}
+      <span>Página {{ pagina }} de {{ total_paginas }}</span>
+      {% if pagina < total_paginas %}
+        <a href="{{ url_for('listado', pagina=pagina + 1) }}">Siguiente</a>
+      {% endif %}
+    </p>
+  {% else %}
+    <p>Aún no hay avistamientos. <a href="{{ url_for('avistamiento') }}">Informa el primero</a>.</p>
+  {% endif %}
+{% endblock %}
+
+{% block javascript %}
+  <script src="{{ url_for('static', filename='js/listado.js') }}"></script>
+{% endblock %}

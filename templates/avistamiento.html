@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Informar avistamiento{% endblock %}
+
+{% block content %}
+  <h2>Informar un avistamiento</h2>
+  <p>Los campos marcados con * son obligatorios.</p>
+
+  {% if not voluntarios %}
+    <p class="aviso error">
+      Todavía no hay voluntarios. Primero <a href="{{ url_for('registro') }}">registra un voluntario</a>.
+    </p>
+  {% endif %}
+
+  <section id="mensaje" class="aviso error" {% if not errores %}hidden{% endif %}>
+    <h3 id="mensaje-titulo">Corrija los siguientes datos:</h3>
+    <ul id="mensaje-lista">
+      {% for error in errores %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {# enctype="multipart/form-data" es obligatorio para poder enviar archivos #}
+  <form name="formAvistamiento" action="{{ url_for('avistamiento') }}" method="post" enctype="multipart/form-data">
+    <p>
+      <label for="voluntario">Voluntario *</label>
+      <select id="voluntario" name="voluntario">
+        <option value="">Seleccione un voluntario</option>
+        {% for v in voluntarios %}
+          <option value="{{ v.id }}" {% if datos.get('voluntario') == v.id | string %}selected{% endif %}>{{ v.nombre }} ({{ v.email }})</option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>
+      <label for="ave">Ave *</label>
+      <select id="ave" name="ave">
+        <option value="">Seleccione un ave</option>
+        {% for ave in aves %}
+          <option value="{{ ave.id }}" {% if datos.get('ave') == ave.id | string %}selected{% endif %}>{{ ave.nombre }}</option>
+        {% endfor %}
+      </select>
+    </p>
+
+    <p>
+      <label for="lugar">Lugar del avistamiento *</label>
+      <input type="text" id="lugar" name="lugar" value="{{ datos.get('lugar', '') }}">
+      <small>Entre 3 y 200 caracteres.</small>
+    </p>
+
+    <p>
+      <label for="fecha">Fecha *</label>
+      <input type="date" id="fecha" name="fecha" value="{{ datos.get('fecha', '') }}">
+      <small>No puede ser futura ni anterior a un año.</small>
+    </p>
+
+    <p>
+      <label for="hora">Hora *</label>
+      <input type="time" id="hora" name="hora" value="{{ datos.get('hora', '') }}">
+    </p>
+
+    <p>
+      <label for="archivos">Foto o video *</label>
+      <input type="file" id="archivos" name="archivos" multiple accept="image/*,video/*">
+      <small>Entre 1 y 3 archivos de imagen o video.</small>
+    </p>
+
+    <p>
+      <label for="descripcion">Descripción (opcional)</label>
+      <textarea id="descripcion" name="descripcion" rows="3" cols="40">{{ datos.get('descripcion', '') }}</textarea>
+      <small>Máximo 500 caracteres.</small>
+    </p>
+
+    <p>
+      <button type="button" id="boton-informar">Informar avistamiento</button>
+    </p>
+  </form>
+{% endblock %}
+
+{% block javascript %}
+  <script src="{{ url_for('static', filename='js/avistamiento.js') }}"></script>
+{% endblock %}

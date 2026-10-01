@@ -1,0 +1,214 @@
+/* estilos.css - hoja de estilos unica (basada en la tarea 1) */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f0;
+  color: #222222;
+  margin: 0;
+}
+
+header {
+  background-color: #2f6b52;
+  color: #ffffff;
+  padding: 15px;
+}
+
+header h1 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+}
+
+nav a {
+  color: #ffffff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+h2 {
+  color: #2f6b52;
+  font-size: 20px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 5px;
+}
+
+footer {
+  background-color: #2f6b52;
+  color: #ffffff;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ----- formularios ----- */
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+input, select, textarea {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 1px solid #999999;
+  font-size: 14px;
+}
+
+input[type="text"], textarea {
+  width: 300px;
+}
+
+small {
+  display: block;
+  color: #666666;
+  font-size: 12px;
+}
+
+button {
+  background-color: #2f6b52;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #999999;
+  cursor: default;
+}
+
+/* ----- caja de mensajes de validacion ----- */
+
+.aviso {
+  padding: 10px 15px;
+  border-left: 5px solid #999999;
+  margin-bottom: 15px;
+}
+
+.aviso h3 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.error {
+  background-color: #ffdddd;
+  border-left-color: #cc0000;
+}
+
+.exito {
+  background-color: #ddffdd;
+  border-left-color: #2f6b52;
+}
+
+/* ----- tabla del listado ----- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+caption {
+  text-align: left;
+  padding: 5px 0;
+  font-style: italic;
+}
+
+th, td {
+  border: 1px solid #cccccc;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #e4ece8;
+}
+
+/* ----- portada ----- */
+
+.tarjeta {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-left: 5px solid #2f6b52;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}
+
+.tarjeta h3 {
+  margin: 0 0 5px 0;
+}
+
+.tarjeta p {
+  margin: 3px 0;
+}
+
+/* ----- listado ----- */
+
+.fila {
+  cursor: pointer;
+}
+
+.fila:hover {
+  background-color: #eef5f1;
+}
+
+.paginacion a,
+.paginacion span {
+  margin-right: 15px;
+}
+
+/* ----- detalle ----- */
+
+.detalle dt {
+  font-weight: bold;
+}
+
+.detalle dd {
+  margin: 0 0 10px 0;
+}
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.galeria figure {
+  margin: 0;
+}
+
+.galeria img,
+.galeria video {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #cccccc;
+}
+
+.galeria figcaption {
+  font-size: 12px;
+  color: #666666;
+}
+
+/* ----- pantallas chicas ----- */
+
+@media (max-width: 600px) {
+  input[type="text"], textarea, select {
+    width: 100%;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}

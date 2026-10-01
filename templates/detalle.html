@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ av.ave }}{% endblock %}
+
+{% block content %}
+  <article>
+    <h2>{{ av.ave }}</h2>
+
+    <dl class="detalle">
+      <dt>Lugar</dt>
+      <dd>{{ av.lugar }}</dd>
+
+      <dt>Fecha y hora</dt>
+      <dd><time datetime="{{ av.fecha_hora.isoformat() }}">{{ av.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</time></dd>
+
+      <dt>Voluntario</dt>
+      <dd>{{ av.voluntario }} ({{ av.comuna }})</dd>
+
+      <dt>Descripción</dt>
+      <dd>{{ av.descripcion or "Sin descripción." }}</dd>
+    </dl>
+
+    <h3>Fotos y videos</h3>
+    <div class="galeria">
+      {% for registro in av.registros %}
+        <figure>
+          {% if registro.es_video %}
+            <video src="{{ url_for('static', filename=registro.ruta) }}" controls width="320"></video>
+          {% else %}
+            <img src="{{ url_for('static', filename=registro.ruta) }}" alt="Registro de {{ av.ave }}" width="320">
+          {% endif %}
+          <figcaption>{{ registro.nombre }}</figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </article>
+
+  <p><a href="{{ url_for('listado') }}">Volver al listado</a></p>
+{% endblock %}
