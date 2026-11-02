@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar voluntario{% endblock %}
+
+{% block content %}
+  <h2>Registro de voluntario</h2>
+  <p>Los campos marcados con * son obligatorios.</p>
+
+  {# Caja de errores: la llena el JavaScript, o Flask si la validacion del servidor falla #}
+  <section id="mensaje" class="aviso error" {% if not errores %}hidden{% endif %}>
+    <h3 id="mensaje-titulo">Corrija los siguientes datos:</h3>
+    <ul id="mensaje-lista">
+      {% for error in errores %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <form name="formRegistro" action="{{ url_for('registro') }}" method="post">
+    <p>
+      <label for="nombre">Nombre completo *</label>
+      <input type="text" id="nombre" name="nombre" value="{{ datos.get('nombre', '') }}">
+      <small>Mínimo 3 caracteres, solo letras y espacios.</small>
+    </p>
+
+    <p>
+      <label for="email">Email *</label>
+      <input type="text" id="email" name="email" value="{{ datos.get('email', '') }}">
+      <small>Formato nombre@dominio.cl</small>
+    </p>
+
+    <p>
+      <label for="celular">Celular *</label>
+      <input type="text" id="celular" name="celular" value="{{ datos.get('celular', '') }}">
+      <small>9 dígitos, comenzando con 9. Ejemplo: 912345678</small>
+    </p>
+
+    <p>
+      <label for="region">Región *</label>
+      <select id="region" name="region">
+        <option value="">Seleccione una región</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="comuna">Comuna *</label>
+      <select id="comuna" name="comuna">
+        <option value="">Seleccione una comuna</option>
+      </select>
+    </p>
+
+    <p>
+      <button type="button" id="boton-registrar">Registrarme</button>
+    </p>
+  </form>
+{% endblock %}
+
+{% block javascript %}
+  {# Flask entrega las regiones y comunas de la base de datos como un arreglo JavaScript #}
+  <script>
+    const REGIONES = {{ regiones | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/registro.js') }}"></script>
+{% endblock %}

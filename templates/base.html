@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} - Aves de Chile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Inicio</a>
+      <a href="{{ url_for('registro') }}">Registrar voluntario</a>
+      <a href="{{ url_for('avistamiento') }}">Informar avistamiento</a>
+      <a href="{{ url_for('listado') }}">Listado</a>
+      <a href="{{ url_for('estadisticas') }}">Estadísticas</a>
+    </nav>
+  </header>
+
+  <main>
+    {# mensajes guardados con flash() en app.py, se muestran una sola vez #}
+    {% for mensaje in get_flashed_messages() %}
+      <p class="aviso exito">{{ mensaje }}</p>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  {% block javascript %}{% endblock %}
+</body>
+</html>

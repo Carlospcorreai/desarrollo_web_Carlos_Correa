@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+  <h2>Bienvenido al registro ciudadano de aves</h2>
+  <p>
+    Este sitio permite que personas voluntarias informen los avistamientos de aves
+    que observan en Chile. Con esa información se estudia cómo los cambios del clima
+    afectan a la población de aves.
+  </p>
+
+  <section>
+    <h2>Últimos avistamientos</h2>
+
+    {% if ultimos %}
+      {% for av in ultimos %}
+        <article class="tarjeta">
+          <h3>{{ av.ave }}</h3>
+          <p>
+            <time datetime="{{ av.fecha_hora.isoformat() }}">{{ av.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</time>
+            en {{ av.lugar }}
+          </p>
+          <p>Informado por {{ av.voluntario }} ({{ av.comuna }}) - {{ av.registros | length }} archivo(s)</p>
+          <p><a href="{{ url_for('detalle', id=av.id) }}">Ver detalle</a></p>
+        </article>
+      {% endfor %}
+    {% else %}
+      <p>Aún no hay avistamientos. <a href="{{ url_for('avistamiento') }}">Informa el primero</a>.</p>
+    {% endif %}
+  </section>
+{% endblock %}

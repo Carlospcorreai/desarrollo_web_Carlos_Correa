@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Voluntario registrado{% endblock %}
+
+{% block content %}
+  <p class="aviso exito">
+    {{ voluntario.nombre }}, quedaste registrado como voluntario. ¡Gracias por participar!
+  </p>
+
+  <h2>¿Qué quieres hacer ahora?</h2>
+  <ul>
+    <li><a href="{{ url_for('avistamiento', voluntario=voluntario.id) }}">Informar un avistamiento a mi nombre</a></li>
+    <li><a href="{{ url_for('index') }}">Volver a la página de inicio</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Estadísticas{% endblock %}
+
+{% block content %}
+  {# data-url le dice a estadisticas.js a que URL de Flask pedir los datos #}
+  <section id="estadisticas" data-url="{{ url_for('estadisticas_datos') }}">
+    <h2>Estadísticas</h2>
+    <p id="estado-graficos">Cargando datos...</p>
+
+    {# Cada div queda vacio: Highcharts dibuja el grafico adentro cuando llegan los datos #}
+    <figure class="grafico">
+      <div id="grafico-dia"></div>
+      <figcaption>Cantidad de avistamientos por día.</figcaption>
+    </figure>
+
+    <figure class="grafico">
+      <div id="grafico-ave"></div>
+      <figcaption>Total de avistamientos por ave.</figcaption>
+    </figure>
+
+    <figure class="grafico">
+      <div id="grafico-comuna"></div>
+      <figcaption>Total de voluntarios registrados por comuna.</figcaption>
+    </figure>
+  </section>
+
+  <p><a href="{{ url_for('index') }}">Volver a la portada</a></p>
+{% endblock %}
+
+{% block javascript %}
+  {# Highcharts: biblioteca de graficos vista en clases (Auxiliar 8) #}
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+{% endblock %}
