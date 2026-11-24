@@ -15,6 +15,7 @@ app = Flask(__name__)
 app.secret_key = "cambiar_esta_clave_secreta"  # necesaria para usar flash()
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1000 * 1000  # 50 MB por envio (hasta 3 videos)
+app.config["BUSCADOR_URL"] = "http://127.0.0.1:8080/"  # tarea 4 (Spring Boot)
 
 # crea static/uploads si no existe (por ejemplo, recien descargado de GitHub)
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

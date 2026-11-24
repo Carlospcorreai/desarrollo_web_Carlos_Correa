@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscador de avistamientos - Aves de Chile</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}" href="/css/estilos.css">
+  <link rel="stylesheet" th:href="@{/css/buscador.css}" href="/css/buscador.css">
+</head>
+<body>
+
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <!-- Las demas paginas siguen en la aplicacion Flask de las tareas 2 y 3 -->
+    <nav>
+      <a th:href="${flaskUrl} + '/'" href="#">Inicio</a>
+      <a th:href="${flaskUrl} + '/registro'" href="#">Registrar voluntario</a>
+      <a th:href="${flaskUrl} + '/avistamiento'" href="#">Informar avistamiento</a>
+      <a th:href="${flaskUrl} + '/listado'" href="#">Listado</a>
+      <a th:href="${flaskUrl} + '/estadisticas'" href="#">Estadísticas</a>
+      <a th:href="@{/}" href="/" aria-current="page">Buscador</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Buscador de avistamientos</h2>
+
+    <!-- No tiene action ni boton: buscador.js busca mientras se escribe -->
+    <form id="form-buscador" role="search">
+      <label for="buscar">Buscar por nombre de ave, de voluntario o de comuna</label>
+      <input type="text" id="buscar" name="q" maxlength="100" autocomplete="off"
+             placeholder="Ej.: aguilucho, José, Ñuñoa">
+      <small>Los resultados aparecen mientras escribes. No importan las mayúsculas ni las tildes.</small>
+    </form>
+
+    <!-- aria-live: los lectores de pantalla anuncian cuantos resultados hay -->
+    <p id="estado" class="estado" aria-live="polite">Escribe para buscar.</p>
+
+    <p id="aviso-nota" class="aviso exito" role="status" hidden></p>
+
+    <div class="tabla-contenedor">
+      <table id="tabla-resultados" hidden>
+        <caption>La nota es el promedio de todas las evaluaciones del avistamiento.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Voluntario</th>
+            <th scope="col">Día</th>
+            <th scope="col">Ave</th>
+            <th scope="col">Comuna</th>
+            <th scope="col">Nota</th>
+            <th scope="col"><span class="oculto">Acción</span></th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo-resultados"></tbody>
+      </table>
+    </div>
+
+    <!-- Ventana para evaluar. <dialog> es un elemento nativo de HTML5 -->
+    <dialog id="dialogo-nota" aria-labelledby="dialogo-titulo">
+      <form id="form-nota" name="formNota">
+        <h3 id="dialogo-titulo">Evaluar avistamiento</h3>
+        <p id="dialogo-detalle" class="dialogo-detalle"></p>
+
+        <fieldset class="notas">
+          <legend>Elige una nota entre 1 y 7</legend>
+          <label><input type="radio" name="nota" value="1"> 1</label>
+          <label><input type="radio" name="nota" value="2"> 2</label>
+          <label><input type="radio" name="nota" value="3"> 3</label>
+          <label><input type="radio" name="nota" value="4"> 4</label>
+          <label><input type="radio" name="nota" value="5"> 5</label>
+          <label><input type="radio" name="nota" value="6"> 6</label>
+          <label><input type="radio" name="nota" value="7"> 7</label>
+        </fieldset>
+
+        <div id="nota-error" class="aviso error" role="alert" hidden></div>
+
+        <p class="dialogo-botones">
+          <button type="submit" id="boton-guardar">Guardar nota</button>
+          <button type="button" id="boton-cancelar" class="secundario">Cancelar</button>
+        </p>
+      </form>
+    </dialog>
+  </main>
+
+  <footer>
+    <p>Prototipo CC5002 - Desarrollo de Aplicaciones Web</p>
+  </footer>
+
+  <script th:src="@{/js/buscador.js}" src="/js/buscador.js"></script>
+</body>
+</html>
